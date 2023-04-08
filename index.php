@@ -1,18 +1,10 @@
 <?php
-echo "Hello, world! <br>";
-?>
-<!DOCTYPE html>
-<html lang="en">
+$name = "Denis";
+$productCount = 4;
+$productPrice = 1.99;
+$productName = "cookie";
+$totalPrice = $productPrice * $productCount;
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <button>Click me</button>
-</body>
-
-</html>
+echo "Hello, {$name} <br>";
+echo "You ordered {$productCount} {$productName}s <br>";
+echo "Total price is {$productCount} x \${$productPrice} = \$$totalPrice<br>";
