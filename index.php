@@ -1,10 +1,28 @@
-<?php
-$name = "Denis";
-$productCount = 4;
-$productPrice = 1.99;
-$productName = "cookie";
-$totalPrice = $productPrice * $productCount;
+<!DOCTYPE html>
+<html lang="en">
 
-echo "Hello, {$name} <br>";
-echo "You ordered {$productCount} {$productName}s <br>";
-echo "Total price is {$productCount} x \${$productPrice} = \$$totalPrice<br>";
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="index.php" method="get">
+        <label>name: </label>
+        <input type="text" name="username"><br>
+        <label>password: </label>
+        <input type="password" name="password"><br>
+        <input type="submit" value="Log in">
+    </form>
+</body>
+
+</html>
+
+
+<?php
+echo $_GET;
+echo "<br>";
+echo $_GET["username"] . "<br>";
+echo "{$_GET["password"]} <br>";
