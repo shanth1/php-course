@@ -1,15 +1,19 @@
 <?php
-$age = 19;
-$name = "Denis";
-$isLogged = true;
-$isBaned = false;
+$grade = "A";
 
-if ($age == 100 || $name == "Bob") {
-    echo "Wow";
-} else if ($age < 0) {
-    echo "impossible";
-} else if ($age >= 18 && $isLogged && !$isBaned) {
-    echo "Yes";
-} else {
-    echo "Ho-ho-ho, No";
+switch ($grade) {
+    case 'A':
+        echo "Great!";
+        break;
+    case 'B':
+    case 'C':
+    case 'D':
+        echo "Ok!";
+        break;
+    case 'F':
+        echo "Bad!";
+        break;
+    default:
+        echo "{$grade} is not a grade!";
+        break;
 }
