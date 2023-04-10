@@ -26,7 +26,9 @@
 $start = $_GET['start'];
 $end = $_GET['end'];
 
-for ($number = $start; $number <= $end; $number++) {
+$number = $start;
+while ($number <= $end) {
     $square = $number ** 2;
     echo "$number ** 2 = {$square}" . "<br>";
+    $number++;
 }
