@@ -10,53 +10,34 @@
 
 <body>
     <form action="index.php" method="post">
-        <label>Delivery info</label>
-        <br>
-        <input type="radio" name="delivery_time" value="hour">In one hour<br>
-        <input type="radio" name="delivery_time" value="today">Today<br>
-        <input type="radio" name="delivery_time" value="tomorrow">Tomorrow<br>
-        <input type="radio" name="credit_card" value="visa">VISA<br>
-        <input type="radio" name="credit_card" value="mastercard">MASTERCARD<br>
-        <input type="submit" name="button" value="Send">
+        <input type="checkbox" name="foods[]" value="pizza">Pizza<br>
+        <input type="checkbox" name="foods[]" value="hotdog">Hotdog<br>
+        <input type="checkbox" name="foods[]" value="hamburger">Hamburger<br>
+        <input type="checkbox" name="foods[]" value="taco">Taco<br>
+        <input type="submit" name="submit" value="I like it">
     </form>
 </body>
 
 </html>
 
 <?php
-$submit = $_POST["button"];
-$delivery_time = $_POST["delivery_time"];
-$credit_card = $_POST["credit_card"];
-
-
-if (isset($submit)) {
-
-    switch ($delivery_time) {
-        case "hour":
-            echo "Package will be delivered in one hour";
+$favorite_foods = $_POST['food'];
+foreach ($favorite_foods as $food) {
+    switch ($food) {
+        case "pizza":
+            echo "You like pizza!" . "<br>";
             break;
-        case "today":
-            echo "Package will be delivered today";
+        case "hotdog":
+            echo "You like hotdog!" . "<br>";
             break;
-        case "tomorrow":
-            echo "Package will be delivered today";
+        case "hamburger":
+            echo "You like hamburger!" . "<br>";
+            break;
+        case "taco":
+            echo "You like taco!" . "<br>";
             break;
         default:
-            echo "Please, select the delivery time";
-            break;
-    }
-
-    echo "<br>";
-
-    switch ($credit_card) {
-        case "visa":
-            echo "VISA selected as credit card";
-            break;
-        case "mastercard":
-            echo "MASTERCARD selected as credit card";
-            break;
-        default:
-            echo "Please, select the credit card";
+            echo "unknown food ({$food})" . "<br>";
             break;
     }
 }
