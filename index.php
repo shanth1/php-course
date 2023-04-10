@@ -1,34 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <form action="index.php" method="get">
-        <label>Enter start value</label>
-        <input type="text" value="1" name="start">
-        <br>
-        <label>Enter end value</label>
-        <input type="text" value="10" name="end">
-        <br>
-        <input type="submit" value="Go!">
-    </form>
-</body>
-
-</html>
 
 <?php
-$start = $_GET['start'];
-$end = $_GET['end'];
+$dictionary = array(
+    'academy' => 'академия',
+    'board' => 'доска',
+    'suspect' => 'подозревать',
+);
+echo "original associative array:" . "<br>";
+foreach ($dictionary as $key => $value) {
+    echo "$key = $value" . "<br>";
+}
 
-$number = $start;
-while ($number <= $end) {
-    $square = $number ** 2;
-    echo "$number ** 2 = {$square}" . "<br>";
-    $number++;
+$keys = array_keys($dictionary);
+$values = array_values($dictionary);
+$flipped_array = array_flip($dictionary);
+
+echo "<br><br>";
+echo "only keys:" . "<br>";
+foreach ($keys as $key) {
+    echo $key . "<br>";
+}
+
+echo "<br><br>";
+echo "only values:" . "<br>";
+foreach ($values as $value) {
+    echo $value . "<br>";
+}
+
+echo "<br><br>";
+echo "flipped array:" . "<br>";
+foreach ($flipped_array as $key => $value) {
+    echo "$key = $value" . "<br>";
 }
