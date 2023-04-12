@@ -1,25 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="index.php" method="post">
+        <label>Username:</label>
+        <input type="text" name="username"><br>
+        <label>Age:</label>
+        <input type="text" name="age"><br>
+        <label>Email:</label>
+        <input type="text" name="email"><br>
+        <input type="submit" name="login" value="Log in">
+    </form>
+</body>
+
+</html>
 <?php
-$arr = array("Hello", ",", "world", "!");
-$text = "___Q W E r_t_y#";
+if (isset($_POST['login'])) {
+    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+    $age = filter_input(INPUT_POST, "age", FILTER_SANITIZE_NUMBER_INT);
+    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
 
-echo strtolower($text) . "<br>";
-echo strtoupper($text) . "<br>";
-echo "trim: " . trim($text, "_") . "<br>";
-echo "pad: " . str_pad($text, 21, "@", STR_PAD_BOTH) . "<br>";
-echo "replace: " . str_replace("_", " ", $text) . "<br>";
-echo "reverse: " . strrev($text) . "<br>";
-echo "shuffle: " . str_shuffle($text) . "<br>";
-echo strcmp($text, "___Q W E r_t_sy#") ? "different string" : "same string";
-echo "<br>";
-echo "length: " . strlen($text) . "<br>";
-echo "position of E: " . strpos($text, "E") . "<br>";
-echo "substring: " . substr($text, 0, 7) . "<br>";
+    $age = filter_input(INPUT_POST, "age", FILTER_VALIDATE_INT);
+    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
 
-echo "<br>";
-echo "string to array: <br>";
-foreach (explode(' ', $text) as $word) {
-    echo $word . "<br>";
+    echo "Hi, $username" . "<br>";
+
+    if (empty($age)) {
+        echo "Age is not valid<br>";
+    } else {
+        echo "You are $age years old" . "<br>";
+    }
+
+    if (empty($email)) {
+        echo "Email is not valid<br>";
+    } else {
+        echo "Email: $email" . "<br>";
+    }
 }
-echo "<br>";
-
-echo "array to string: " . implode(" ", $arr) . "<br>";
