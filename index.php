@@ -1,14 +1,37 @@
 <?php
-setcookie("favorite_food", "burger", time() + (60 * 60 * 24), "/");
-setcookie("favorite_drink", "water", time() - 0, "/");
+session_start();
+echo "username from session: {$_SESSION["username"]}" . "<br>";
+echo "password from session: {$_SESSION["password"]}" . "<br>";
+?>
+<!DOCTYPE html>
+<html lang="en">
 
-foreach ($_COOKIE as $key => $value) {
-    echo "$key = $value" . "<br>";
-}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-echo "<br>";
-if (isset($_COOKIE["favorite_drink"])) {
-    echo "Your favorite drink is {$_COOKIE["favorite_drink"]}";
-} else {
-    echo "I don't know your favorite drink";
+<body>
+    <form action="index.php" method="post">
+        <label>username: </label>
+        <input type="text" name="username">
+        <label>password: </label>
+        <input type="password" name="password">
+        <hr>
+        <input type="submit" name="login" value="Log in">
+    </form>
+</body>
+
+</html>
+<?php
+if (isset($_POST["login"])) {
+    if (!empty($_POST["username"]) && !empty($_POST["password"])) {
+        $_SESSION["username"] = $_POST["username"];
+        $_SESSION["password"] = $_POST["password"];
+
+        echo "ok";
+        header("loCation: home.php");
+    }
 }
