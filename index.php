@@ -1,21 +1,14 @@
 <?php
-include("header.html");
-?>
-<!DOCTYPE html>
-<html lang="en">
+setcookie("favorite_food", "burger", time() + (60 * 60 * 24), "/");
+setcookie("favorite_drink", "water", time() - 0, "/");
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+foreach ($_COOKIE as $key => $value) {
+    echo "$key = $value" . "<br>";
+}
 
-<body>
-    <h3>This is a home page</h3>
-</body>
-
-</html>
-<?php
-include("footer.html");
-?>
+echo "<br>";
+if (isset($_COOKIE["favorite_drink"])) {
+    echo "Your favorite drink is {$_COOKIE["favorite_drink"]}";
+} else {
+    echo "I don't know your favorite drink";
+}
