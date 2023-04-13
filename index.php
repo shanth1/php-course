@@ -1,20 +1,36 @@
-<html>
-<h1>All SERVER values</h1>
-<form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
-    <input type="submit">
-</form>
-<hr>
+<?php
+echo "correct password: qwe123"
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="index.php" method="post">
+        Username : <input type="text" name="username" value="Blem">
+        Password : <input type="password" name="password">
+        <input type="submit" name="login" value="Log in">
+    </form>
+</body>
 
 </html>
 <?php
+$correct_password = 'qwe123';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo "REQUEST_METHOD is POST";
-} else {
-    echo "REQUEST_METHOD is not a POST";
-}
+    $password = $_POST["password"];
+    $hash = password_hash($password, PASSWORD_DEFAULT);
 
-echo "<hr>";
-
-foreach ($_SERVER as $key => $value) {
-    echo "$key: $value <br>";
+    echo "password: $password" . "<br>";
+    echo "hashed password: $hash" . "<br>";
+    if (password_verify($correct_password, $hash)) {
+        echo "status: correct password" . "<br>";
+    } else {
+        echo "status: incorrect password" . "<br>";
+    }
 }
