@@ -1,5 +1,5 @@
 <?php
-echo "correct password: qwe123"
+include("database.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,25 +12,7 @@ echo "correct password: qwe123"
 </head>
 
 <body>
-    <form action="index.php" method="post">
-        Username : <input type="text" name="username" value="Blem">
-        Password : <input type="password" name="password">
-        <input type="submit" name="login" value="Log in">
-    </form>
+    Hello
 </body>
 
 </html>
-<?php
-$correct_password = 'qwe123';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $password = $_POST["password"];
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-
-    echo "password: $password" . "<br>";
-    echo "hashed password: $hash" . "<br>";
-    if (password_verify($correct_password, $hash)) {
-        echo "status: correct password" . "<br>";
-    } else {
-        echo "status: incorrect password" . "<br>";
-    }
-}
