@@ -41,6 +41,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     }
+    if (isset($_POST["login"])) {
+        $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+        $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($username) || empty($password)) {
+            echo "Missing username or password<br>";
+        } else {
+            $sql_query = "SELECT username, password FROM users WHERE username = '$username'";
+            try {
+                $result = mysqli_query($connection, $sql_query);
+                if (mysqli_num_rows($result) == 1) {
+                    if (password_verify($password, mysqli_fetch_assoc($result)["password"])) {
+                        header("location: home.php");
+                    } else {
+                        echo 'incorrect password';
+                    }
+                } else {
+                    echo "No such user";
+                }
+            } catch (mysqli_sql_exception) {
+                echo "Login failed<br>";
+            }
+        }
+    }
 }
 
 mysqli_close($connection);
