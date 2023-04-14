@@ -1,5 +1,18 @@
 <?php
 include("database.php");
+$username = "Oleg";
+$password = "blem";
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+$age = 30;
+$sql_query = "INSERT INTO users (username, password, age) 
+                VALUES ('$username', '$hashed_password', $age)";
+try {
+    mysqli_query($connection, $sql_query);
+    echo "User is added";
+} catch (mysqli_sql_exception) {
+    echo "Could not added a user";
+}
+
 mysqli_close($connection)
 ?>
 <!DOCTYPE html>
